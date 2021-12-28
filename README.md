@@ -24,7 +24,7 @@ sap-api-integrations-maintenance-plan-reads が対応する APIサービス は�
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-maintenance-plan-reads には、次の API をコールするためのリソースが含まれています。  
 
-* MaintenancePlan（保全計画 - ヘッダ）※保全計画の詳細データを取得するために、ToStragetyCycle、ToMaintenanceCycle、ToCallObjectと合わせて利用されます。
+* MaintenancePlan（保全計画 - ヘッダ）※保全計画の詳細データを取得するために、ToStragetyCycle、ToMaintenanceCycle、ToCallObject、と合わせて利用されます。
 * ToStragetyCycle(保全計画 - 計画周期)
 * ToMaintenanceCycle(保全計画 - 保全周期)
 * ToCallObject（保全計画 - コール対象物）
