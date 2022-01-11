@@ -25,9 +25,9 @@ sap-api-integrations-maintenance-plan-reads が対応する APIサービス は�
 sap-api-integrations-maintenance-plan-reads には、次の API をコールするためのリソースが含まれています。  
 
 * MaintenancePlan（保全計画 - ヘッダ）※保全計画の詳細データを取得するために、ToStragetyCycle、ToMaintenanceCycle、ToCallObject、と合わせて利用されます。
-* ToStragetyCycle(保全計画 - 保全方針周期)
-* ToMaintenanceCycle(保全計画 - 保全周期)
-* ToCallObject（保全計画 - 保全コール対象）
+* ToStragetyCycle(保全計画 - 保全方針周期 ※To)
+* ToMaintenanceCycle(保全計画 - 保全周期 ※To)
+* ToCallObject（保全計画 - 保全コール対象 ※To）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-maintenance-plan-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
