@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/latonaio/golang-logging-library/logger"
+	"github.com/latonaio/golang-logging-library-for-sap/logger"
 	"golang.org/x/xerrors"
 )
 
@@ -59,13 +59,6 @@ func (c *SAPAPICaller) Header(maintenancePlan string) {
 	}
 	c.log.Info(strategyCycleData)
 	
-	maintenanceCycleData, err := c.callToMaintenanceCycle(headerData[0].ToMaintenanceCycle)
-	if err != nil {
-		c.log.Error(err)
-		return
-	}
-	c.log.Info(maintenanceCycleData)
-
 	itemData, err := c.callToItem(headerData[0].ToItem)
 	if err != nil {
 		c.log.Error(err)
@@ -115,24 +108,6 @@ func (c *SAPAPICaller) callToStrategyCycle(url string) ([]sap_api_output_formatt
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
 	data, err := sap_api_output_formatter.ConvertToToStrategyCycle(byteArray, c.log)
-	if err != nil {
-		return nil, xerrors.Errorf("convert error: %w", err)
-	}
-	return data, nil
-}
-
-func (c *SAPAPICaller) callToMaintenanceCycle(url string) ([]sap_api_output_formatter.ToMaintenanceCycle, error) {
-	req, _ := http.NewRequest("GET", url, nil)
-	c.setHeaderAPIKeyAccept(req)
-
-	resp, err := new(http.Client).Do(req)
-	if err != nil {
-		return nil, xerrors.Errorf("API request error: %w", err)
-	}
-	defer resp.Body.Close()
-
-	byteArray, _ := ioutil.ReadAll(resp.Body)
-	data, err := sap_api_output_formatter.ConvertToToMaintenanceCycle(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"sap-api-integrations-maintenance-plan-reads/SAP_API_Caller/responses"
 
-	"github.com/latonaio/golang-logging-library/logger"
+	"github.com/latonaio/golang-logging-library-for-sap/logger"
 	"golang.org/x/xerrors"
 )
 
@@ -60,7 +60,6 @@ func ConvertToHeader(raw []byte, l *logger.Logger) ([]Header, error) {
 			MaintenancePlanCallObject:      data.MaintenancePlanCallObject,
 			MaintenancePlanSystemStatus:    data.MaintenancePlanSystemStatus,
 			ToStrategyCycle:                data.ToStrategyCycle.Deferred.URI,
-			ToMaintenanceCycle:             data.ToMaintenanceCycle.Deferred.URI,
 			ToItem:                         data.ToItem.Deferred.URI,
 		})
 	}
@@ -96,63 +95,6 @@ func ConvertToToStrategyCycle(raw []byte, l *logger.Logger) ([]ToStrategyCycle, 
 	}
 
 	return toStrategyCycle, nil
-}
-
-func ConvertToToMaintenanceCycle(raw []byte, l *logger.Logger) ([]ToMaintenanceCycle, error) {
-	pm := &responses.ToMaintenanceCycle{}
-
-	err := json.Unmarshal(raw, pm)
-	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ToMaintenanceCycle. unmarshal error: %w", err)
-	}
-//	if len(pm.D.Results) == 0 {
-//		return nil, xerrors.New("Result data is not exist")
-//	}
-	if len(pm.D.Results) > 10 {
-		l.Info("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
-	}
-	toMaintenanceCycle := make([]ToMaintenanceCycle, 0, 10)
-	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
-		data := pm.D.Results[i]
-		toMaintenanceCycle = append(toMaintenanceCycle, ToMaintenanceCycle{
-			MaintenancePlan:                data.MaintenancePlan,
-			MaintenancePlanDesc:            data.MaintenancePlanDesc,
-			CreationDate:                   data.CreationDate,
-			LastChangeDate:                 data.LastChangeDate,
-			MaintenanceStrategy:            data.MaintenanceStrategy,
-			SchedulingDuration:             data.SchedulingDuration,
-			SchedulingDurationUnit:         data.SchedulingDurationUnit,
-			NumberOfMaintenanceItems:       data.NumberOfMaintenanceItems,
-			CycleModificationRatio:         data.CycleModificationRatio,
-			MaintPlanSchedgIndicator:       data.MaintPlanSchedgIndicator,
-			MaintenancePlanInternalID:      data.MaintenancePlanInternalID,
-			MaintenanceCall:                data.MaintenanceCall,
-			MaintenancePlanCategory:        data.MaintenancePlanCategory,
-			MaintPlanFreeDefinedAttrib:     data.MaintPlanFreeDefinedAttrib,
-			BasicStartDate:                 data.BasicStartDate,
-			SchedulingStartDate:            data.SchedulingStartDate,
-			SchedulingStartTime:            data.SchedulingStartTime,
-			MaintPlanStartCntrReadingValue: data.MaintPlanStartCntrReadingValue,
-			MaintPlnStrtBufDurationInDays:  data.MaintPlnStrtBufDurationInDays,
-			MaintPlanStartBufferUnit:       data.MaintPlanStartBufferUnit,
-			FactoryCalendar:                data.FactoryCalendar,
-			LateCompletionShiftInPercent:   data.LateCompletionShiftInPercent,
-			LateCompletionTolerancePercent: data.LateCompletionTolerancePercent,
-			EarlyCompletionShiftInPercent:  data.EarlyCompletionShiftInPercent,
-			EarlyCompletionTolerancePct:    data.EarlyCompletionTolerancePct,
-			PrdcssrCallObjCompltnIsRqd:     data.PrdcssrCallObjCompltnIsRqd,
-			MaintPlanLogicalOperatorCode:   data.MaintPlanLogicalOperatorCode,
-			SchedulingEndDate:              data.SchedulingEndDate,
-			MaintPlanEndCntrReadingValue:   data.MaintPlanEndCntrReadingValue,
-			LastChangeDateTime:             data.LastChangeDateTime,
-			MultipleCounterPlanShiftFactor: data.MultipleCounterPlanShiftFactor,
-			MaintenanceLeadFloatInDays:     data.MaintenanceLeadFloatInDays,
-			MaintenancePlanCallObject:      data.MaintenancePlanCallObject,
-			MaintenancePlanSystemStatus:    data.MaintenancePlanSystemStatus,
-		})
-	}
-
-	return toMaintenanceCycle, nil
 }
 
 func ConvertToToItem(raw []byte, l *logger.Logger) ([]ToItem, error) {

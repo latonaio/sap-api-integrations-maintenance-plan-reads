@@ -70,7 +70,7 @@ type SDC struct {
 		CycleModificationRatio         string      `json:"CycleModificationRatio"`
 		MaintPlanSchedgIndicator       string      `json:"MaintPlanSchedgIndicator"`
 		MaintenancePlanInternalID      string      `json:"MaintenancePlanInternalID"`
-		MaintenanceCall                interface{} `json:"MaintenanceCall"`
+		MaintenanceCall                int         `json:"MaintenanceCall"`
 		MaintenancePlanCategory        string      `json:"MaintenancePlanCategory"`
 		MaintPlanFreeDefinedAttrib     string      `json:"MaintPlanFreeDefinedAttrib"`
 		BasicStartDate                 string      `json:"BasicStartDate"`
@@ -92,48 +92,14 @@ type SDC struct {
 		MaintenanceLeadFloatInDays     string      `json:"MaintenanceLeadFloatInDays"`
 		MaintenancePlanCallObject      string      `json:"MaintenancePlanCallObject"`
 		MaintenancePlanSystemStatus    string      `json:"MaintenancePlanSystemStatus"`
-		StrategicCycle                 struct {
+		StrategyCycle                  struct {
 			MaintenancePlanCycle           string `json:"MaintenancePlanCycle"`
 			MaintenanceStrategy            string `json:"MaintenanceStrategy"`
 			MaintPlanCycRcrrcIntervalQty   string `json:"MaintPlanCycRcrrcIntervalQty"`
 			MaintPlanCycRcrrcIntervalUnit  string `json:"MaintPlanCycRcrrcIntervalUnit"`
 			MaintPlanCycleDesc             string `json:"MaintPlanCycleDesc"`
 			MaintPlanCycleStartOffsetValue string `json:"MaintPlanCycleStartOffsetValue"`
-		} `json:"StrategicCycle"`
-		MaintenanceCycle struct {
-			CreationDate                   string      `json:"CreationDate"`
-			LastChangeDate                 string      `json:"LastChangeDate"`
-			MaintenanceStrategy            string      `json:"MaintenanceStrategy"`
-			SchedulingDuration             string      `json:"SchedulingDuration"`
-			SchedulingDurationUnit         string      `json:"SchedulingDurationUnit"`
-			NumberOfMaintenanceItems       string      `json:"NumberOfMaintenanceItems"`
-			CycleModificationRatio         string      `json:"CycleModificationRatio"`
-			MaintPlanSchedgIndicator       string      `json:"MaintPlanSchedgIndicator"`
-			MaintenancePlanInternalID      string      `json:"MaintenancePlanInternalID"`
-			MaintenanceCall                interface{} `json:"MaintenanceCall"`
-			MaintenancePlanCategory        string      `json:"MaintenancePlanCategory"`
-			MaintPlanFreeDefinedAttrib     string      `json:"MaintPlanFreeDefinedAttrib"`
-			BasicStartDate                 string      `json:"BasicStartDate"`
-			SchedulingStartDate            string      `json:"SchedulingStartDate"`
-			SchedulingStartTime            string      `json:"SchedulingStartTime"`
-			MaintPlanStartCntrReadingValue string      `json:"MaintPlanStartCntrReadingValue"`
-			MaintPlnStrtBufDurationInDays  string      `json:"MaintPlnStrtBufDurationInDays"`
-			MaintPlanStartBufferUnit       string      `json:"MaintPlanStartBufferUnit"`
-			FactoryCalendar                string      `json:"FactoryCalendar"`
-			LateCompletionShiftInPercent   string      `json:"LateCompletionShiftInPercent"`
-			LateCompletionTolerancePercent string      `json:"LateCompletionTolerancePercent"`
-			EarlyCompletionShiftInPercent  string      `json:"EarlyCompletionShiftInPercent"`
-			EarlyCompletionTolerancePct    string      `json:"EarlyCompletionTolerancePct"`
-			PrdcssrCallObjCompltnIsRqd     string      `json:"PrdcssrCallObjCompltnIsRqd"`
-			MaintPlanLogicalOperatorCode   string      `json:"MaintPlanLogicalOperatorCode"`
-			SchedulingEndDate              string      `json:"SchedulingEndDate"`
-			MaintPlanEndCntrReadingValue   string      `json:"MaintPlanEndCntrReadingValue"`
-			LastChangeDateTime             string      `json:"LastChangeDateTime"`
-			MultipleCounterPlanShiftFactor string      `json:"MultipleCounterPlanShiftFactor"`
-			MaintenanceLeadFloatInDays     string      `json:"MaintenanceLeadFloatInDays"`
-			MaintenancePlanCallObject      string      `json:"MaintenancePlanCallObject"`
-			MaintenancePlanSystemStatus    string      `json:"MaintenancePlanSystemStatus"`
-		} `json:"MaintenanceCycle"`
+		} `json:"StrategyCycle"`
 		MaintenancePlanItem struct {
 			MaintenanceItem              string      `json:"MaintenanceItem"`
 			MaintenanceItemDescription   string      `json:"MaintenanceItemDescription"`
@@ -162,7 +128,7 @@ type SDC struct {
 			MaintPriority                string      `json:"MaintPriority"`
 			MaintPriorityType            string      `json:"MaintPriorityType"`
 			BusinessArea                 string      `json:"BusinessArea"`
-			ImmediateReleaseIsBlocked    interface{} `json:"ImmediateReleaseIsBlocked"`
+			ImmediateReleaseIsBlocked    bool        `json:"ImmediateReleaseIsBlocked"`
 			Material                     string      `json:"Material"`
 			SerialNumber                 string      `json:"SerialNumber"`
 			ServiceDocumentType          string      `json:"ServiceDocumentType"`
@@ -192,11 +158,11 @@ type SDC struct {
 			LastChangeDate               string      `json:"LastChangeDate"`
 			LastChangeDateTime           string      `json:"LastChangeDateTime"`
 			CallObjects                  struct {
-				MaintenancePlanCallNumber    interface{} `json:"MaintenancePlanCallNumber"`
+				MaintenancePlanCallNumber    int         `json:"MaintenancePlanCallNumber"`
 				MaintenanceOrder             string      `json:"MaintenanceOrder"`
 				MaintenanceNotification      string      `json:"MaintenanceNotification"`
 				ServiceOrder                 string      `json:"ServiceOrder"`
-				MaintCallHorizonIsNotReached interface{} `json:"MaintCallHorizonIsNotReached"`
+				MaintCallHorizonIsNotReached bool        `json:"MaintCallHorizonIsNotReached"`
 				SchedulingStatus             string      `json:"SchedulingStatus"`
 				PlannedStartDate             string      `json:"PlannedStartDate"`
 			} `json:"CallObjects"`

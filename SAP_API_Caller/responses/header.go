@@ -48,11 +48,6 @@ type Header struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`
 			} `json:"to_StrategyCycle"`
-			ToMaintenanceCycle struct {
-				Deferred struct {
-					URI string `json:"uri"`
-				} `json:"__deferred"`
-			} `json:"to_MaintenanceCycle"`
 			ToItem                         struct {
 				Deferred struct {
 					URI string `json:"uri"`
